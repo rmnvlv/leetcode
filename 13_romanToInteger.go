@@ -119,7 +119,7 @@ func romanToInt_1(s string) int {
 	return number
 }
 
-// Second try
+// Second try Runtime: 13 ms, Memory Usage: 2.9 MB
 func romanToInt_2(s string) int {
 	romanInt := map[string]int{"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
 	number := 0
@@ -137,8 +137,26 @@ func romanToInt_2(s string) int {
 	return number
 }
 
+// Third try Runtime: 8 ms, Memory Usage: 2.8 MB
+func romanToInt_3(s string) int {
+	romanInt := map[string]int{"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+	number := 0
+	lastValue := 0
+	for i := len(s) - 1; i >= 0; i-- {
+		char := s[i : i+1]
+		value := romanInt[char]
+		if value < lastValue {
+			number -= value
+			continue
+		}
+		number += value
+		lastValue = value
+	}
+	return number
+}
+
 func main() {
 	var s string
 	fmt.Scan(&s)
-	fmt.Println(romanToInt_2(s))
+	fmt.Println(romanToInt_3(s))
 }
