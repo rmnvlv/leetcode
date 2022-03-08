@@ -19,15 +19,53 @@ Input: l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]
 Output: [8,9,9,9,0,0,0,1]
 */
 
-// Firt try
 // Definition for singly-linked list.
 type ListNode struct {
 	Val  int
 	Next *ListNode
 }
 
+// Firt try Runtime: 4 - 12 ms, Memory Usage: 4.6 MB
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+	myNode := ListNode{}
+	myValue := &myNode
+	sum, rest := 0, 0
+	for l1 != nil || l2 != nil || rest != 0 {
+		sum = rest
+		if l1 != nil {
+			sum += l1.Val
+			l1 = l1.Next
+		}
+		if l2 != nil {
+			sum += l2.Val
+			l2 = l2.Next
+		}
+		myValue.Next = &ListNode{Val: sum % 10, Next: nil}
+		myValue = myValue.Next
+		rest = sum / 10
+	}
+	return myNode.Next
+}
 
+// Second try Runtime: 4 - 33 ms, Memory Usage: 4.5 MB
+func addTwoNumbers2(l1 *ListNode, l2 *ListNode) *ListNode {
+	myNode := ListNode{}
+	myValue := &myNode
+	sum := 0
+	for l1 != nil || l2 != nil || sum != 0 {
+		if l1 != nil {
+			sum += l1.Val
+			l1 = l1.Next
+		}
+		if l2 != nil {
+			sum += l2.Val
+			l2 = l2.Next
+		}
+		myValue.Next = &ListNode{Val: sum % 10, Next: nil}
+		myValue = myValue.Next
+		sum = sum / 10
+	}
+	return myNode.Next
 }
 
 func main() {
