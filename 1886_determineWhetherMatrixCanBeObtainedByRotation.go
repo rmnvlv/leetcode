@@ -33,51 +33,25 @@ mat[i][j] and target[i][j] are either 0 or 1.
 //First try
 
 func findRotation(mat [][]int, target [][]int) bool {
-	rotate := make([][]int, 0, len(mat))
-	rotate = mat
-	t := 0
-	flag := true
-
-	fmt.Println(len(mat))
-
-	fmt.Println(rotate, "Main value ________________")
-
-	for t < 4 {
-		rotate, t = rot(t, rotate, mat)
-		mat = rotate
-		flag = compare(rotate, target)
-		if flag == true {
-			return true
-		}
-	}
-
-	return false
-}
-
-func compare(rotate [][]int, target [][]int) bool {
-	fmt.Println(rotate, target)
-	for i := 0; i < len(rotate); i++ {
-		for j := 0; j < len(rotate); j++ {
-			if rotate[i][j] != target[i][j] {
-				return false
+	f1, f2, f3, f4 := true, true, true, true
+	l := len(mat)
+	for i := 0; i < len(mat); i++ {
+		for j := 0; j < len(mat); j++ {
+			if mat[i][j] != target[i][j] {
+				f1 = false
+			}
+			if mat[i][j] != target[l-1-j][i] {
+				f2 = false
+			}
+			if mat[i][j] != target[j][l-1-i] {
+				f3 = false
+			}
+			if mat[i][j] != target[l-i-1][l-j-1] {
+				f4 = false
 			}
 		}
 	}
-	return true
-}
-
-func rot(t int, rotate [][]int, mat [][]int) ([][]int, int) {
-	fmt.Println("---------------------START ROTATION--------------------------")
-	for i := 0; i < len(mat); i++ {
-		for j := 0; j < len(mat); j++ {
-			fmt.Println(rotate, " Cofig into this -> ", mat)
-			rotate[j][len(mat)-i-1] = mat[i][j]
-			fmt.Println("After: ....", rotate, mat)
-		}
-	}
-
-	t++
-	return rotate, t
+	return f1 || f2 || f3 || f4
 }
 
 func main() {
