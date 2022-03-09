@@ -53,9 +53,24 @@ func findRotation(mat [][]int, target [][]int) bool {
 	return f1 || f2 || f3 || f4
 }
 
+//Second try Runtime: 0 ms, Memory Usage: 2.4 MB bool math
+func findRotation2(mat [][]int, target [][]int) bool {
+	f1, f2, f3, f4 := true, true, true, true
+	l := len(mat) - 1
+	for i := 0; i < len(mat); i++ {
+		for j := 0; j < len(mat); j++ {
+			f1 = f1 && mat[i][j] == target[i][j]
+			f2 = f2 && mat[i][j] == target[l-j][i]
+			f3 = f3 && mat[i][j] == target[j][l-i]
+			f4 = f4 && mat[i][j] == target[l-i][l-j]
+		}
+	}
+	return f1 || f2 || f3 || f4
+}
+
 func main() {
 	matrix := [][]int{{0, 1}, {1, 0}}
 	target := [][]int{{1, 0}, {0, 1}}
-	fmt.Println(findRotation(matrix, target))
+	fmt.Println(findRotation2(matrix, target))
 
 }
