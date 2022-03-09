@@ -30,8 +30,7 @@ n == mat[i].length == target[i].length
 mat[i][j] and target[i][j] are either 0 or 1.
 */
 
-//First try
-
+//First try Runtime: 2 ms, Memory Usage: 2.4 MB
 func findRotation(mat [][]int, target [][]int) bool {
 	f1, f2, f3, f4 := true, true, true, true
 	l := len(mat)
