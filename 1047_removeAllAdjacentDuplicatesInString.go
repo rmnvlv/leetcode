@@ -29,7 +29,7 @@ Constraints:
 s consists of lowercase English letters.
 */
 
-//First try
+//First try Runtime: 3 ms, Memory Usage: 6.6 MB
 func removeDuplicates(s string) string {
 	myStr := make([]byte, 0, len(s))
 
