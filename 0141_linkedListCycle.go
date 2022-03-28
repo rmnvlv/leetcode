@@ -36,7 +36,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
-//First try
+//First try Runtime: 0 ms Memory Usage: 4.3 MB Two Poiter alg
 func hasCycle(head *ListNode) bool {
 	if head == nil {
 		return false
@@ -55,7 +55,6 @@ func hasCycle(head *ListNode) bool {
 	}
 
 	return false
-
 }
 
 func main() {
