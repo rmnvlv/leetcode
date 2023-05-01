@@ -1,4 +1,5 @@
 ﻿namespace Easy.Solutions;
+using System.Text;
 public class Solutions{
     
     //1929. Concatenation of Array Runtime 144 ms Beats 70.86% Memory 48.1 MB Beats 16.3%
@@ -41,5 +42,24 @@ public class Solutions{
             nums[i] = nums[i] / nums.Length;
         }
         return nums;
+    }
+
+    //1108. Defanging an IP Address Runtime 76 ms Beats 75.66% Memory 36.4 MB Beats 90.23%
+    public static string DefangIPaddr1(string address) {
+        return address.Replace(".", "[.]");
+    }
+
+    //1108. Defanging an IP Address Runtime 77 ms Beats 72.19% Memory 36.2 MB Beats 95.20%
+    public static string DefangIPaddr2(string address) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i<address.Length; ++i){
+            if (address[i] == '.'){
+                sb.Append("[.]");
+            } else {
+                sb.Append(address[i]);
+            }
+        }
+
+        return sb.ToString();
     }
 }
