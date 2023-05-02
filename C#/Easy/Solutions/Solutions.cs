@@ -62,4 +62,30 @@ public class Solutions{
 
         return sb.ToString();
     }
+
+    //1470. Shuffle the Array Runtime 146 ms Beats 44.78% Memory 45.1 MB Beats 6.40%
+    public static int[] Shuffle(int[] nums, int n) {
+        int[] ans = new int[n*2];
+
+        for (int i = 0, j = 0; i <nums.Length - n; ++i, ++j) {
+            ans[i] = nums[i];
+            ans[j++] = nums[i+n];
+        } 
+        return nums;
+    }
+
+    //2469. Convert the Temperature Runtime 81 ms Beats 95.89% Memory 36.1 MB Beats 45.24%
+    public static double[] ConvertTemperature1(double celsius) {
+        double[] ans = new double[2];
+
+        ans[0] = celsius + 273.15;
+        ans[1] = celsius * 1.80 + 32.0;
+
+        return ans;
+    }
+
+      //2469. Convert the Temperature Runtime 81 ms Beats 95.89% Memory 36.1 MB Beats 45.24%
+    public static double[] ConvertTemperature2(double celsius) {
+        return new double[2] {celsius + 273.15, celsius * 1.80 + 32.0};
+    }
 }
